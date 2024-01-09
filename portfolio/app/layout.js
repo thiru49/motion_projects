@@ -3,7 +3,9 @@ import './globals.css'
 import Nav from '@/components/Nav'
 import Header from '@/components/Header'
 import TopLeftImg from '@/components/TopLeftImg'
-
+import { AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/router'
+'use client'
 const sora = Sora({ 
   subsets: ['latin'],
   variable:'--font-sora',
@@ -18,15 +20,19 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const router = useRouter()
   return (
     <html lang="en">
       <body >
+        <AnimatePresence mode='wait'>
         <div className={`page bg-site text-white bg-cover bg-no-repeat ${sora.variable} relative`}>
           <TopLeftImg/>
           <Nav/>
           <Header/>
         {children}
         </div>
+        </AnimatePresence>
+       
       
       </body>
     </html>
